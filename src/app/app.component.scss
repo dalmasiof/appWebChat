@@ -1,7 +1,6 @@
 mat-form-field{
     width: 100%;
     margin: 5vh;
-
 }
 
 .message--list{
@@ -16,3 +15,10 @@ mat-form-field{
     position: absolute;
     bottom : 0;
 }
+
+.message--icon{
+    display: flex;
+    flex-direction: row;
+    margin: 8vh;
+}
+
