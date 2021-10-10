@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
-
-import * as socketio from 'socket.io-client';
+import { Observable, Subject } from 'rxjs';
+import { io } from 'socket.io-client';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SocketService {
+  private url = 'http://localhost:4231';
+  private socket = io(this.url);
+  private subjMessages:Subject<string> = new Subject<string>();
 
-  private url = 'http://localhost:5322/';
-  // private sockt = socketio.(this.url);
 
-  constructor(private sockt:SocketService) {
+  constructor() {
+    this.socket.on('message',(m)=>{
+      this.subjMessages.next(m);
+    })
+  }
 
-   }
+  send(message: string) {
+    this.socket.emit("message",message)
+  }
 
-  send(message:string){
-    console.log(message)
+  messages(){
+    return this.subjMessages as Observable<string>;
   }
 }

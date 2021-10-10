@@ -5,11 +5,11 @@
     <input matInput placeholder="Usuário" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Digite a mensagem..." />
+    <input [(ngModel)]='message' id="msg" matInput placeholder="Digite a mensagem..." />
   </mat-form-field>
   <div class="message--icon">
-    <mat-icon>
-      send  
-    </mat-icon>
+    <button mat-icon-button (click)="sendMessage()">
+      <mat-icon>send</mat-icon>  
+    </button>
   </div>
 </div>
