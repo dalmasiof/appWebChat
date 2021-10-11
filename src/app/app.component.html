@@ -2,7 +2,7 @@
 </div>
 <div class="message--input">
   <mat-form-field>
-    <input matInput placeholder="Usuário" />
+    <input [(ngModel)]='name' id="msg" matInput placeholder="Usuário" />
   </mat-form-field>
   <mat-form-field>
     <input [(ngModel)]='message' id="msg" matInput placeholder="Digite a mensagem..." />

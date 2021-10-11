@@ -5,10 +5,10 @@ const io = require('socket.io')(http);
 
 io.on('connection',(socket)=>{
     socket.on('message',(msg)=>{
-        console.log(msg);
+        io.emit('message',msg);
     })
-})
+});
 
 http.listen(4231,()=>{
         console.log('listening port 4231')
-})
+});

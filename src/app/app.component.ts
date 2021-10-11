@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { message } from './model/message';
 import { SocketService } from './services/socket.service';
 
 @Component({
@@ -9,18 +10,24 @@ import { SocketService } from './services/socket.service';
 export class AppComponent {
   title = 'appWebChat';
   message!: string;
+  name!: string;
 
-  constructor(private scktSvc: SocketService) {}
+  constructor(private scktSvc: SocketService) {
+    this.scktSvc.messages().subscribe((x)=>{
+      console.log(x)
+    })
+  }
 
   sendMessage() {
-    debugger  
-    this.scktSvc.send(this.message);
+   
+    let objMessage:message={
+      name:this.name,
+      message:this.message
+    }
+
+    this.scktSvc.send(objMessage);
     this.message = '';
   }
 
-  ngOnInit() {
-    this.scktSvc.messages().subscribe((msg) => {
-      console.log(msg);
-    });
-  }
+  
 }
