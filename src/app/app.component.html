@@ -1,15 +1,39 @@
 <div class="message--list">
+  <div *ngFor="let m of messages" [ngClass]="m.name == name ? 'cards1' : 'cards2'" class="card" >
+    <mat-card *ngIf="name == m.name" class="cardNonUser">
+      <mat-card-content>
+        <span class="message__header">
+          {{ m.name }}
+        </span>
+        {{ m.message }}
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="name != m.name" class="cardUser">
+      <mat-card-content>
+        <span class="message__header">
+          {{ m.name }}
+        </span>
+        {{ m.message }}
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 <div class="message--input">
+
   <mat-form-field>
-    <input [(ngModel)]='name' id="msg" matInput placeholder="Usuário" />
+    <input [(ngModel)]="name" id="msg" matInput placeholder="Usuário" />
   </mat-form-field>
   <mat-form-field>
-    <input [(ngModel)]='message' id="msg" matInput placeholder="Digite a mensagem..." />
+    <input
+      [(ngModel)]="message"
+      id="msg"
+      matInput
+      placeholder="Digite a mensagem..."
+    />
   </mat-form-field>
   <div class="message--icon">
     <button mat-icon-button (click)="sendMessage()">
-      <mat-icon>send</mat-icon>  
+      <mat-icon>send</mat-icon>
     </button>
   </div>
 </div>

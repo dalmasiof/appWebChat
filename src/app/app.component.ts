@@ -12,22 +12,21 @@ export class AppComponent {
   message!: string;
   name!: string;
 
+  messages: message[] = [];
+
   constructor(private scktSvc: SocketService) {
-    this.scktSvc.messages().subscribe((x)=>{
-      console.log(x)
-    })
+    this.scktSvc.messages().subscribe((x) => {
+      this.messages.push(x)
+    });
   }
 
   sendMessage() {
-   
-    let objMessage:message={
-      name:this.name,
-      message:this.message
-    }
+    let objMessage: message = {
+      name: this.name,
+      message: this.message,
+    };
 
     this.scktSvc.send(objMessage);
     this.message = '';
   }
-
-  
 }
